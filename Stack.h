@@ -19,6 +19,7 @@ public:
 	bool is_empty() { return head == nullptr; }
 	void push(T data) { head = new node(data, head); }
 	T pop();
+	~stack();
 };
 
 template <typename T> T stack<T>::pop() {
@@ -30,3 +31,11 @@ template <typename T> T stack<T>::pop() {
 		return to_return;
 	}
 }
+template <typename T> stack<T>::~stack() {
+	node* victim;
+	while (head != nullptr) {
+		victim = head;
+		head = head->next;
+		delete victim;
+	}
+ }
